@@ -11,31 +11,31 @@ let products = [
 {
 	name:"pull",
 	color:"blue",
-	price: 19,
-	incart:0
-},
-{
-	name:"pull",
-	color:"purple",
-	price: 15,
-	incart:0
-},
-{
-	name:"pull",
-	color:"pink",
 	price: 10,
 	incart:0
 },
 {
 	name:"pull",
+	color:"purple",
+	price: 22,
+	incart:0
+},
+{
+	name:"pull",
+	color:"pink",
+	price: 17,
+	incart:0
+},
+{
+	name:"pull",
 	color:"brown",
-	price: 13,
+	price: 15,
 	incart:0
 },
 {
 	name:"pull",
 	color:"black",
-	price: 11,
+	price: 16,
 	incart:0
 }];
 
@@ -44,6 +44,7 @@ for( let index=0; index < carts.length; index++){
         e.preventDefault();
 	     // console.log('slt')
 	     cartNumbers(products[index]);
+	     totalcost(products[index])
 
     })
 }
@@ -92,9 +93,19 @@ function onLoadCartNumbers(){
    let productNumbers = localStorage.getItem('cartNumbers')
    if (productNumbers) {
    	document.querySelector('.cart span').textContent = productNumbers
-
-
-   }
+    }
+}
+//calculer le prix des produits
+function totalcost(product){
+//console.log('the product price is', product.price)
+let cartcost=localStorage.getItem('totalcost')
+if (cartcost!= null) {
+cartcost=parseInt(cartcost)
+localStorage.setItem('totalcost', cartcost + product.price)
+}else{
+	localStorage.setItem('totalcost', product.price)
+}
+//console.log(typeof cartcost)
 }
 onLoadCartNumbers();
 })
